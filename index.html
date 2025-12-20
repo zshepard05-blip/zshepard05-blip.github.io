@@ -60,7 +60,7 @@
     .brand img{
       width:34px; height:34px;
       border-radius:10px;
-      object-fit:cover;
+      object-fit:contain;
       border:1px solid var(--border);
       background:#fff;
     }
@@ -105,6 +105,7 @@
       background:#fff;
       box-shadow:0 6px 18px rgba(17,24,39,.06);
       white-space:nowrap;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
     }
     .btn:hover{ transform: translateY(-1px); }
     .btn.primary{
@@ -138,7 +139,7 @@
       position:absolute; inset:0;
       background:
         radial-gradient(1200px 600px at 20% 35%, rgba(255,255,255,.08), transparent 55%),
-        linear-gradient(to top, rgba(11,31,59,.55) 0%, rgba(11,31,59,.10) 55%, rgba(11,31,59,.06) 100%);
+        linear-gradient(to top, rgba(11,31,59,.45) 0%, rgba(11,31,59,.08) 58%, rgba(11,31,59,.05) 100%);
       pointer-events:none;
     }
 
@@ -365,7 +366,7 @@
       font-size:13px;
     }
 
-    /* ===== Stats strip (Michigan-style, UConn colors) ===== */
+    /* ===== Stats strip ===== */
     .stats{
       background: var(--uconn-light);
       border-top:1px solid var(--border);
@@ -422,7 +423,7 @@
       font-weight:600;
     }
 
-    /* ===== Contact (Michigan-style) ===== */
+    /* ===== Contact ===== */
     .contact-grid{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -510,8 +511,9 @@
       </nav>
 
       <div class="header-cta">
-        <a class="btn ghost" href="#sponsors">Sponsor us</a>
-        <a class="btn primary" href="#getinvolved">Join the team</a>
+        <!-- ✅ now goes to sponsor page -->
+        <a class="btn ghost" href="sponsor.html">Sponsor us</a>
+        <a class="btn primary" href="https://uconntact.uconn.edu/organization/humanpoweredsubmarine" target="_blank" rel="noreferrer">Join the team</a>
       </div>
     </div>
   </header>
@@ -527,8 +529,9 @@
           Our mission is hands-on engineering: CAD, composites, testing, and real performance iteration.
         </p>
         <div class="hero-actions">
-          <a class="btn primary" href="#getinvolved">Join the team</a>
-          <a class="btn ghost" href="#sponsors">Sponsor us</a>
+          <a class="btn primary" href="https://uconntact.uconn.edu/organization/humanpoweredsubmarine" target="_blank" rel="noreferrer">Join the team</a>
+          <!-- ✅ now goes to sponsor page -->
+          <a class="btn ghost" href="sponsor.html">Sponsor us</a>
         </div>
       </div>
 
@@ -706,15 +709,18 @@
 
       <div class="panel">
         <h3>Thank you to our supporters</h3>
+
+        <!-- ✅ Updated sponsors only -->
         <div class="pills">
+          <span class="pill">Onshape</span>
           <span class="pill">Scuba Shack</span>
-          <span class="pill">Rock West Composites</span>
-          <span class="pill">UConn Robotics</span>
           <span class="pill">Your next sponsor</span>
         </div>
 
         <div style="height:14px"></div>
-        <a class="btn primary" href="#contact">Become a sponsor</a>
+
+        <!-- ✅ Become a sponsor goes to sponsor page -->
+        <a class="btn primary" href="sponsor.html">Become a sponsor</a>
       </div>
     </div>
   </section>
@@ -745,7 +751,9 @@
             <h3>Sponsor us</h3>
             <p>Support can be monetary, materials, discounts, or equipment. Sponsors appear on the hull, apparel, and website.</p>
             <div style="height:12px"></div>
-            <a class="btn ghost" href="#contact">Contact sponsorship</a>
+
+            <!-- ✅ Link to sponsor form page -->
+            <a class="btn ghost" href="sponsor.html">Contact sponsorship</a>
           </div>
         </div>
 
@@ -806,6 +814,9 @@
               uconntact.uconn.edu/organization/humanpoweredsubmarine
             </a>
           </div>
+
+          <div style="height:14px"></div>
+          <a class="btn primary" href="sponsor.html">Sponsor inquiry</a>
         </aside>
       </div>
     </div>
@@ -823,3 +834,4 @@
   </script>
 </body>
 </html>
+
