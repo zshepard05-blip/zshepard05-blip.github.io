@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>UConn Human Powered Submarine Club</title>
   <meta name="description" content="UConn Human Powered Submarine Club — designing and building UConn’s first human-powered racing submarine for ISR." />
 
@@ -12,24 +12,26 @@
       --uconn-navy:#0b1f3b;
       --uconn-blue:#1e4fa8;
       --uconn-light:#f6f8fc;
-      --text:#111827;
-      --muted:#4b5563;
+
+      --text:#0f172a;
+      --muted:#475569;
       --border:#e5e7eb;
       --card:#ffffff;
-      --shadow: 0 10px 30px rgba(17,24,39,.08);
+
+      --shadow: 0 10px 28px rgba(15,23,42,.08);
       --radius: 18px;
       --max: 1100px;
     }
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
-    html, body{ width:100%; overflow-x:hidden; } /* IMPORTANT: prevent sideways scroll */
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       background:#ffffff;
       line-height:1.45;
+      overflow-x:hidden; /* prevents sideways scroll on phones */
     }
     a{ color:inherit; text-decoration:none; }
     img{ max-width:100%; display:block; }
@@ -51,14 +53,13 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      position:relative; /* for dropdown nav on mobile */
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      min-width:0;          /* IMPORTANT: prevents overflow on mobile */
+      min-width: 0;
       flex: 1 1 auto;
     }
     .brand img{
@@ -78,6 +79,7 @@
     .brand .title b{
       font-size:14px;
       letter-spacing:.2px;
+      color: var(--uconn-navy);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -90,30 +92,40 @@
       text-overflow:ellipsis;
     }
 
-    /* Desktop nav */
-    .nav{
+    .menu-btn{
+      display:none;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:800;
+      line-height:1;
+      box-shadow:0 6px 16px rgba(15,23,42,.06);
+      cursor:pointer;
+    }
+
+    .nav-links{
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:10px;
       flex-wrap:wrap;
       justify-content:center;
     }
-    .nav a{
+    .nav-links a{
       font-size:13px;
       color:#1f2937;
       padding:8px 10px;
       border-radius:12px;
     }
-    .nav a:hover{ background:var(--uconn-light); }
+    .nav-links a:hover{ background:var(--uconn-light); }
 
-    .nav-cta{
+    .header-cta{
       display:flex;
       align-items:center;
       gap:10px;
-      margin-left: 6px;
+      flex: 0 0 auto;
     }
 
-    /* Buttons */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -125,7 +137,7 @@
       font-size:13px;
       border:1px solid var(--border);
       background:#fff;
-      box-shadow:0 6px 18px rgba(17,24,39,.06);
+      box-shadow:0 6px 18px rgba(15,23,42,.06);
       white-space:nowrap;
       transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
       cursor:pointer;
@@ -135,46 +147,55 @@
       background: var(--uconn-blue);
       border-color: transparent;
       color:#fff;
-      box-shadow:0 10px 22px rgba(30,79,168,.25);
+      box-shadow:0 10px 22px rgba(30,79,168,.22);
     }
     .btn.ghost{
       background:#fff;
       color:var(--uconn-navy);
     }
 
-    /* Mobile hamburger */
-    .menu-btn{
+    /* Mobile nav drawer */
+    .drawer{
       display:none;
-      border:1px solid var(--border);
+      border-top:1px solid var(--border);
       background:#fff;
-      border-radius:12px;
-      padding:10px 12px;
-      font-size:18px;
-      line-height:1;
-      box-shadow:0 6px 18px rgba(17,24,39,.06);
-      cursor:pointer;
-      flex: 0 0 auto;
+    }
+    .drawer-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:10px 14px 14px;
+      display:grid;
+      gap:8px;
+    }
+    .drawer a{
+      padding:12px 12px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background: var(--uconn-light);
+      font-weight:700;
+      color: var(--uconn-navy);
     }
 
     /* ===== Hero (full-bleed) ===== */
     .hero{
       position:relative;
       width:100%;
-      min-height: 76vh;
+      min-height: 72vh;
       display:flex;
       align-items:flex-end;
       justify-content:center;
       overflow:hidden;
       border-bottom: 1px solid var(--border);
-      background: url("assets/hero.jpg.jpg") center 35% / cover no-repeat;
+      background: url("assets/hero.jpg.jpg") center 20% / cover no-repeat;
     }
+
     /* lighter overlay so it’s NOT dim */
     .hero::before{
       content:"";
       position:absolute; inset:0;
       background:
-        radial-gradient(1200px 600px at 20% 35%, rgba(255,255,255,.08), transparent 55%),
-        linear-gradient(to top, rgba(11,31,59,.45) 0%, rgba(11,31,59,.08) 58%, rgba(11,31,59,.05) 100%);
+        radial-gradient(1200px 600px at 20% 35%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(to top, rgba(11,31,59,.45) 0%, rgba(11,31,59,.08) 60%, rgba(11,31,59,.04) 100%);
       pointer-events:none;
     }
 
@@ -182,20 +203,20 @@
       position:relative;
       width:min(var(--max), calc(100% - 28px));
       margin:0 auto;
-      padding: 24px 0 34px;
+      padding: 22px 0 26px;
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
+      grid-template-columns: 1fr;
+      gap:14px;
       align-items:end;
     }
 
     .hero-card{
       background: rgba(255,255,255,.94);
-      border:1px solid rgba(229,231,235,.92);
+      border:1px solid rgba(229,231,235,.95);
       box-shadow: var(--shadow);
       border-radius: 22px;
-      padding: 22px 22px 18px;
-      max-width: 720px;
+      padding: 18px 18px 16px;
+      max-width: 760px;
     }
     .eyebrow{
       display:flex; align-items:center; gap:8px;
@@ -209,43 +230,20 @@
     .hero h1{
       margin:0 0 10px;
       font-size: 44px;
-      line-height:1.05;
+      line-height:1.06;
       letter-spacing:-.02em;
       color: var(--uconn-navy);
     }
     .hero p{
-      margin:0 0 16px;
-      color:#374151;
-      font-size:14.5px;
+      margin:0 0 14px;
+      color:#334155;
+      font-size:15px;
       max-width: 62ch;
     }
     .hero-actions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-    }
-
-    .hero-side{
-      display:flex;
-      justify-content:flex-end;
-      align-items:flex-end;
-    }
-    .scroll-hint{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color:#fff;
-      font-size:12px;
-      opacity:.9;
-      justify-content:flex-end;
-      padding-bottom: 8px;
-    }
-    .scroll-pill{
-      width:34px; height:34px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.35);
-      display:grid; place-items:center;
-      background: rgba(255,255,255,.10);
     }
 
     /* ===== Sections ===== */
@@ -273,7 +271,7 @@
       margin: 10px 0 0;
     }
 
-    /* ===== Cards ===== */
+    /* ===== What we do cards ===== */
     .grid-3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -284,9 +282,9 @@
       background: var(--card);
       border:1px solid var(--border);
       border-radius: var(--radius);
-      box-shadow: 0 12px 26px rgba(17,24,39,.06);
+      box-shadow: 0 12px 26px rgba(15,23,42,.06);
       overflow:hidden;
-      min-width:0;
+      min-width: 0;
     }
     .card-media{
       height: 190px;
@@ -295,7 +293,7 @@
     .card-media img{
       width:100%; height:100%;
       object-fit:cover;
-      object-position:center;
+      object-position: center 35%;
     }
     .card-body{ padding:16px 16px 18px; }
     .card-body h3{ margin:0 0 8px; font-size:18px; color:var(--uconn-navy); }
@@ -313,7 +311,7 @@
       margin:0 auto;
       display:grid;
       grid-template-columns: repeat(4, 1fr);
-      gap:14px;
+      gap:12px;
       text-align:center;
     }
     .stat{
@@ -321,12 +319,12 @@
       border:1px solid var(--border);
       border-radius: 16px;
       padding:14px 12px;
-      box-shadow:0 10px 20px rgba(17,24,39,.05);
+      box-shadow:0 10px 20px rgba(15,23,42,.05);
       min-width:0;
     }
     .stat .num{
-      font-size:26px;
-      font-weight:800;
+      font-size:24px;
+      font-weight:900;
       color: var(--uconn-navy);
       letter-spacing:-.02em;
     }
@@ -334,35 +332,101 @@
       font-size:12px;
       color: var(--muted);
       margin-top:4px;
-      font-weight:700;
+      font-weight:800;
       text-transform:uppercase;
       letter-spacing:.08em;
     }
 
-    /* ===== Panel / Sponsors ===== */
+    /* ===== Sponsors slider ===== */
     .panel{
       background:#fff;
       border:1px solid var(--border);
       border-radius: var(--radius);
-      box-shadow: 0 12px 26px rgba(17,24,39,.06);
+      box-shadow: 0 12px 26px rgba(15,23,42,.06);
       padding:18px;
       min-width:0;
     }
-    .pills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top: 12px;
+    .sponsor-layout{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+      margin-top: 10px;
     }
-    .pill{
+
+    .slider{
+      display:grid;
+      gap:12px;
+    }
+    .slider-stage{
+      position:relative;
+      border:1px solid var(--border);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 10px 22px rgba(15,23,42,.05);
+      overflow:hidden;
+      height: min(52vw, 420px);
+      min-height: 220px;
+    }
+    .slider-stage img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding: 18px;
+      background: #ffffff;
+      transition: opacity .18s ease;
+    }
+    .slider-caption{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 0 4px;
+    }
+    .slider-caption b{
+      color: var(--uconn-navy);
+      font-size: 14px;
+      letter-spacing:.2px;
+    }
+    .arrows{
+      display:flex;
+      gap:8px;
+    }
+    .icon-btn{
       border:1px solid var(--border);
       background:#fff;
-      border-radius:999px;
+      border-radius: 12px;
       padding:10px 12px;
-      font-size:13px;
-      color:#1f2937;
-      font-weight:700;
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 6px 16px rgba(15,23,42,.06);
     }
+    .thumbs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .thumb{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius: 14px;
+      padding:10px;
+      cursor:pointer;
+      box-shadow:0 6px 16px rgba(15,23,42,.05);
+      transition: transform .12s ease, border-color .12s ease;
+    }
+    .thumb:hover{ transform: translateY(-1px); }
+    .thumb[aria-current="true"]{
+      border-color: rgba(30,79,168,.6);
+      box-shadow:0 10px 22px rgba(30,79,168,.14);
+    }
+    .thumb img{
+      width: 140px;
+      height: 52px;
+      object-fit:contain;
+    }
+
+    /* ===== Get involved ===== */
+    .muted-section{ background: var(--uconn-light); }
 
     /* ===== Contact ===== */
     .contact-grid{
@@ -376,7 +440,7 @@
       border:1px solid var(--border);
       border-radius: var(--radius);
       overflow:hidden;
-      box-shadow: 0 12px 26px rgba(17,24,39,.06);
+      box-shadow: 0 12px 26px rgba(15,23,42,.06);
       background:#fff;
       min-width:0;
     }
@@ -390,7 +454,7 @@
       background:#fff;
       border:1px solid var(--border);
       border-radius: var(--radius);
-      box-shadow: 0 12px 26px rgba(17,24,39,.06);
+      box-shadow: 0 12px 26px rgba(15,23,42,.06);
       padding:18px;
       min-width:0;
     }
@@ -406,15 +470,23 @@
       background: var(--uconn-light);
       min-width:0;
     }
-    .contact-item b{ font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#1f2937; }
+    .contact-item b{
+      font-size:12px;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:#1f2937;
+    }
     .contact-item a{
       color: var(--uconn-blue);
       font-weight:800;
       font-size:14px;
-      overflow-wrap:anywhere; /* IMPORTANT: prevents horizontal scrolling on long URLs */
       word-break: break-word;
     }
-    .contact-item span{ color:#374151; font-size:14px; font-weight:800; }
+    .contact-item span{
+      color:#334155;
+      font-size:14px;
+      font-weight:800;
+    }
 
     /* ===== Footer ===== */
     footer{
@@ -434,62 +506,43 @@
       flex-wrap:wrap;
     }
 
-    /* ===== Responsive ===== */
-    @media (max-width: 980px){
+    /* ===== Mobile fixes ===== */
+    @media (max-width: 900px){
       .grid-3{ grid-template-columns: 1fr; }
       .stats-inner{ grid-template-columns: repeat(2, 1fr); }
       .contact-grid{ grid-template-columns: 1fr; }
-      .hero-inner{ grid-template-columns: 1fr; }
-      .hero{ min-height: 70vh; }
     }
 
-    /* Mobile nav dropdown */
     @media (max-width: 720px){
-      .menu-btn{ display:inline-flex; align-items:center; justify-content:center; }
+      .menu-btn{ display:inline-flex; }
+      .nav-links{ display:none; }
+      .header-cta .btn.ghost{ display:none; } /* shrink header on phones */
+      .drawer{ display:none; }
+      .drawer.open{ display:block; }
 
-      .nav{
-        display:none;
-        position:absolute;
-        left:12px;
-        right:12px;
-        top:58px;
-        background: rgba(255,255,255,.98);
-        border:1px solid var(--border);
-        border-radius:16px;
-        box-shadow:0 18px 40px rgba(17,24,39,.12);
-        padding:12px;
-        flex-direction:column;
-        align-items:stretch;
-        gap:8px;
-        z-index:100;
+      .hero{
+        min-height: 58vh;              /* less screen taken by hero */
+        background-position: center 25%; /* keep faces visible */
       }
-      .nav a{
-        width:100%;
-        padding:10px 12px;
-        border-radius:12px;
-      }
-      .nav-cta{
-        width:100%;
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        margin-left:0;
-        margin-top:6px;
-      }
-      .nav-cta .btn{ width:100%; }
-
-      .nav.open{ display:flex; }
-
-      /* Hero takes less screen on phones */
-      .hero{ min-height: 62vh; }
-      .hero-card{ padding:18px; }
       .hero h1{ font-size: 34px; }
       section{ padding: 54px 14px; }
+      .section-title h2{ font-size: 30px; }
+      .thumb img{ width: 120px; height: 46px; }
+      .map iframe{ height: 340px; }
+    }
+
+    @media (max-width: 420px){
+      .brand .title span{ display:none; } /* even smaller header */
+      .btn{ padding:10px 11px; }
+      .hero-card{ padding:16px; }
+      .hero p{ font-size:14px; }
+      .stats-inner{ grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 
 <body>
+
   <!-- Header -->
   <header class="header">
     <div class="header-inner">
@@ -501,24 +554,28 @@
         </div>
       </a>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
-
-      <nav class="nav" id="nav">
+      <nav class="nav-links" aria-label="Primary navigation">
         <a href="#what">What we do</a>
         <a href="#sponsors">Sponsors</a>
         <a href="#getinvolved">Get Involved</a>
         <a href="#contact">Contact</a>
-
-        <div class="nav-cta">
-          <a class="btn ghost" href="sponsor.html">Sponsor us</a>
-          <a class="btn primary" href="https://groupme.com/join_group/109966324/IqMqhQlz" target="_blank" rel="noreferrer">Join the team</a>
-        </div>
       </nav>
 
-      <!-- Desktop CTA (hidden automatically by wrapping; keep for desktop layout balance) -->
-      <div class="nav-cta" style="display:flex;">
+      <div class="header-cta">
         <a class="btn ghost" href="sponsor.html">Sponsor us</a>
         <a class="btn primary" href="https://groupme.com/join_group/109966324/IqMqhQlz" target="_blank" rel="noreferrer">Join the team</a>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="drawer" id="mobileDrawer">
+      <div class="drawer-inner">
+        <a href="#what">What we do</a>
+        <a href="#sponsors">Sponsors</a>
+        <a href="#getinvolved">Get Involved</a>
+        <a href="#contact">Contact</a>
+        <a href="sponsor.html">Sponsor inquiry</a>
       </div>
     </div>
   </header>
@@ -531,18 +588,11 @@
         <h1>Human Powered Submarine Club</h1>
         <p>
           We design, build, and race a human-powered submarine for the International Submarine Races (ISR).
-          Our mission is hands-on engineering: CAD, composites, testing, and real performance iteration.
+          Hands-on engineering: CAD, composites, testing, and real performance iteration.
         </p>
         <div class="hero-actions">
           <a class="btn primary" href="https://groupme.com/join_group/109966324/IqMqhQlz" target="_blank" rel="noreferrer">Join on GroupMe</a>
           <a class="btn ghost" href="https://uconntact.uconn.edu/organization/humanpoweredsubmarine" target="_blank" rel="noreferrer">Join on UConntact</a>
-        </div>
-      </div>
-
-      <div class="hero-side">
-        <div class="scroll-hint">
-          <div class="scroll-pill">↓</div>
-          <span>Scroll</span>
         </div>
       </div>
     </div>
@@ -625,22 +675,37 @@
       </div>
 
       <div class="panel">
-        <h3>Thank you to our supporters</h3>
+        <h3 style="margin:0 0 10px; color:var(--uconn-navy);">Thank you to our supporters</h3>
 
-        <div class="pills">
-          <span class="pill">Onshape</span>
-          <span class="pill">Scuba Shack</span>
-          <span class="pill">Your next sponsor</span>
+        <div class="sponsor-layout">
+          <div class="slider" id="sponsorSlider" aria-label="Sponsor logos">
+            <div class="slider-stage">
+              <img id="sponsorStageImg" src="" alt="" />
+            </div>
+
+            <div class="slider-caption">
+              <b id="sponsorCaption">Sponsor</b>
+              <div class="arrows">
+                <button class="icon-btn" id="prevSponsor" aria-label="Previous sponsor">‹</button>
+                <button class="icon-btn" id="nextSponsor" aria-label="Next sponsor">›</button>
+              </div>
+            </div>
+
+            <div class="thumbs" id="sponsorThumbs" aria-label="Sponsor thumbnails">
+              <!-- thumbs injected by JS -->
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="sponsor.html">Become a sponsor</a>
+          </div>
         </div>
-
-        <div style="height:14px"></div>
-        <a class="btn primary" href="sponsor.html">Become a sponsor</a>
       </div>
     </div>
   </section>
 
   <!-- Get involved -->
-  <section id="getinvolved" style="background: var(--uconn-light);">
+  <section id="getinvolved" class="muted-section">
     <div class="wrap">
       <div class="section-title">
         <div>
@@ -674,7 +739,7 @@
         <div class="card">
           <div class="card-body">
             <h3>Follow progress</h3>
-            <p>See updates, photos, and build milestones as we iterate toward pool testing and competition readiness.</p>
+            <p>Updates, photos, and build milestones.</p>
             <div style="height:12px"></div>
             <a class="btn ghost" href="https://instagram.com/uconnhps" target="_blank" rel="noreferrer">Instagram @uconnhps</a>
           </div>
@@ -744,37 +809,102 @@
   </footer>
 
   <script>
-    // year
+    // footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Mobile menu toggle
+    // mobile menu
     const menuBtn = document.getElementById("menuBtn");
-    const nav = document.getElementById("nav");
+    const drawer = document.getElementById("mobileDrawer");
+    menuBtn?.addEventListener("click", () => {
+      const open = drawer.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+    });
+    // close drawer when clicking a link
+    drawer?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        drawer.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
 
-    function closeMenu(){
-      nav.classList.remove("open");
-      menuBtn.setAttribute("aria-expanded", "false");
+    // sponsors slider
+    const sponsors = [
+      { name: "Onshape", src: "assets/Onshape_logo.png", alt: "Onshape logo" },
+      { name: "Scuba Shack", src: "assets/ScubaShack.png", alt: "Scuba Shack logo" },
+    ];
+
+    let active = 0;
+    const stageImg = document.getElementById("sponsorStageImg");
+    const caption = document.getElementById("sponsorCaption");
+    const thumbsWrap = document.getElementById("sponsorThumbs");
+    const prevBtn = document.getElementById("prevSponsor");
+    const nextBtn = document.getElementById("nextSponsor");
+
+    function setActive(i){
+      active = (i + sponsors.length) % sponsors.length;
+
+      // fade for smoother swap
+      stageImg.style.opacity = "0";
+      setTimeout(() => {
+        stageImg.src = sponsors[active].src;
+        stageImg.alt = sponsors[active].alt;
+        caption.textContent = sponsors[active].name;
+        stageImg.style.opacity = "1";
+
+        // highlight thumb
+        thumbsWrap.querySelectorAll("button.thumb").forEach((btn, idx) => {
+          btn.setAttribute("aria-current", idx === active ? "true" : "false");
+        });
+      }, 90);
     }
 
-    menuBtn.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    function renderThumbs(){
+      thumbsWrap.innerHTML = "";
+      sponsors.forEach((s, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "thumb";
+        btn.type = "button";
+        btn.setAttribute("aria-label", `Show ${s.name}`);
+        btn.setAttribute("aria-current", "false");
+
+        const img = document.createElement("img");
+        img.src = s.src;
+        img.alt = s.alt;
+        btn.appendChild(img);
+
+        btn.addEventListener("click", () => setActive(idx));
+        thumbsWrap.appendChild(btn);
+      });
+    }
+
+    prevBtn?.addEventListener("click", () => setActive(active - 1));
+    nextBtn?.addEventListener("click", () => setActive(active + 1));
+
+    // keyboard support
+    document.getElementById("sponsorSlider")?.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") setActive(active - 1);
+      if (e.key === "ArrowRight") setActive(active + 1);
     });
 
-    // Close on link click
-    nav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
-
-    // Close if user taps outside the menu
-    document.addEventListener("click", (e) => {
-      if (!nav.classList.contains("open")) return;
-      const clickedInside = nav.contains(e.target) || menuBtn.contains(e.target);
-      if (!clickedInside) closeMenu();
+    // swipe support (mobile)
+    let startX = null;
+    const stage = stageImg?.parentElement;
+    stage?.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive:true });
+    stage?.addEventListener("touchend", (e) => {
+      if (startX === null) return;
+      const endX = e.changedTouches[0].clientX;
+      const dx = endX - startX;
+      startX = null;
+      if (Math.abs(dx) > 40){
+        if (dx > 0) setActive(active - 1);
+        else setActive(active + 1);
+      }
     });
 
-    // If screen resizes up, ensure menu isn't stuck open
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 720) closeMenu();
-    });
+    renderThumbs();
+    setActive(0);
   </script>
 </body>
 </html>
